@@ -8,7 +8,7 @@ class Database : public QObject
     Q_OBJECT
 
     private:
-        PGconn* conn{};
+        PGconn* conn;
 
     public:
         explicit Database(QObject* parent = nullptr);

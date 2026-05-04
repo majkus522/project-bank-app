@@ -5,7 +5,7 @@ using namespace std;
 
 Database::Database(QObject* parent) : QObject(parent)
 {
-    conn = PQconnectdb("host=127.0.0.1 port=5432 dbname=project_c++ user=postgres password=P@ssw0rd");
+    conn = PQconnectdb("host=127.0.0.1 port=5432 dbname=aplikacja_bankowa user=postgres password=P@ssw0rd");
     if (PQstatus(conn) != CONNECTION_OK)
         throw std::runtime_error(PQerrorMessage(conn));
 }
