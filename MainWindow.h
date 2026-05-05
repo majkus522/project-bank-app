@@ -15,8 +15,10 @@ class MainWindow : public QMainWindow
 
     private:
         Ui::MainWindow *ui;
+        int userId;
 
     public:
         explicit MainWindow(QWidget *parent = nullptr);
+        void setUserId(int userId);
         ~MainWindow() override;
 };

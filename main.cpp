@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+#include "MainWindow.h"
 #include "Database.h"
 #include <QApplication>
 #include "LoginWindow.h"

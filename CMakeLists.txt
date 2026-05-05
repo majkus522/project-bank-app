@@ -15,9 +15,9 @@ find_package(PostgreSQL REQUIRED)
 
 set(PROJECT_SOURCES
         main.cpp
-        mainwindow.cpp
-        mainwindow.h
-        mainwindow.ui
+        MainWindow.cpp
+        MainWindow.h
+        MainWindow.ui
         Database.cpp
         Database.h
         LoginWindow.cpp

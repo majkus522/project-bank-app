@@ -5,6 +5,7 @@
 #include <iostream>
 #include "Database.h"
 #include "main.h"
+#include "MainWindow.h"
 
 LoginWindow::LoginWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::LoginWindow)
 {
@@ -29,6 +30,14 @@ void LoginWindow::on_pushButton_clicked()
     PGresult *res = PQexecParams(db->connection(), "SELECT * FROM users WHERE name = $1 AND password = $2",
         2, nullptr, paramValues, nullptr, nullptr, 0);
     if (PQntuples(res) > 0)
-        this->close();
+    {
+        MainWindow * mainWindow = new MainWindow(this);
+        mainWindow->show();
+        this->hide();
+    }
+    else
+    {
+        ui->label->setText("Niepoprawny login lub hasło");
+    }
     PQclear(res);
 }
