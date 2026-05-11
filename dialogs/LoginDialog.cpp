@@ -20,8 +20,8 @@ LoginDialog::~LoginDialog()
 void LoginDialog::on_pushButton_clicked()
 {
     const char* paramValues[2];
-    paramValues[0] = "test";
-    paramValues[1] = "test";
+    paramValues[0] = ui->editLogin->toPlainText().toStdString().c_str();
+    paramValues[1] = ui->editPassword->toPlainText().toStdString().c_str();
     PGresult *res = PQexecParams(Database::getInstance().connection(), "SELECT id FROM users WHERE name = $1 AND password = $2",
         2, nullptr, paramValues, nullptr, nullptr, 0);
     if (PQntuples(res) > 0)
@@ -33,4 +33,10 @@ void LoginDialog::on_pushButton_clicked()
         ui->label->setText("Niepoprawny login lub hasło");
     }
     PQclear(res);
+}
+void LoginDialog::on_pushButton_2_clicked()
+{
+    RegisterDialog * registerDialog = new RegisterDialog(this);
+    this->hide();
+    this->done(registerDialog->exec());
 }
