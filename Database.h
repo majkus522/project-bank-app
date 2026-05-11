@@ -1,17 +1,28 @@
 #pragma once
 
-#include <QObject>
 #include <libpq-fe.h>
+#include <QObject>
 
 class Database : public QObject
 {
     Q_OBJECT
 
-    private:
-        PGconn* conn;
-
     public:
-        explicit Database(QObject* parent = nullptr);
-        ~Database() override;
+        static Database& getInstance()
+        {
+            static Database instance;
+            return instance;
+        }
+
+        Database(const Database&) = delete;
+        Database& operator=(const Database&) = delete;
+        Database(Database&&) = delete;
+        Database& operator=(Database&&) = delete;
+
         PGconn* connection() const;
+
+    private:
+        Database();
+        ~Database() override;
+        PGconn* conn;
 };

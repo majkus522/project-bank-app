@@ -20,8 +20,7 @@ set(PROJECT_SOURCES
         MainWindow.ui
         Database.cpp
         Database.h
-        LoginWindow.cpp
-        LoginWindow.h
+        resources.qrc
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -29,8 +28,10 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 qt_add_executable(aplikacja-bankowa
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        LoginWindow.ui
-    )
+        widgets/AccountWidget.h widgets/AccountWidget.cpp widgets/AccountWidget.ui
+        dialogs/RegisterDialog.h dialogs/RegisterDialog.cpp dialogs/RegisterDialog.ui
+        dialogs/LoginDialog.h dialogs/LoginDialog.cpp dialogs/LoginDialog.ui
+)
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET aplikacja-bankowa APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
 #                 ${CMAKE_CURRENT_SOURCE_DIR}/android)

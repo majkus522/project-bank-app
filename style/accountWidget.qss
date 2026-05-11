@@ -1,0 +1,11 @@
+QPushButton#accountButton
+{
+    border-radius: 20px;
+    border: 2px solid white;
+    background-color: #343434;
+}
+
+QPushButton#accountButton:hover
+{
+    background-color: #565656;
+}

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QMainWindow>
+#include "Database.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -15,10 +16,10 @@ class MainWindow : public QMainWindow
 
     private:
         Ui::MainWindow *ui;
-        int userId;
+        Database * db;
 
     public:
         explicit MainWindow(QWidget *parent = nullptr);
-        void setUserId(int userId);
         ~MainWindow() override;
+        void addDatabase(Database * db);
 };

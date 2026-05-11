@@ -1,20 +1,18 @@
 #include "MainWindow.h"
 #include "Database.h"
 #include <QApplication>
-#include "LoginWindow.h"
-#include "main.h"
-
-static Database * database;
+#include <QFile>
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    LoginWindow loginWindow;
+    QApplication app(argc, argv);
+    app.setQuitOnLastWindowClosed(true);
+    MainWindow window;
+    window.show();
 
-    database = new Database(&a);
+    QFile f(":/style/accountWidget.qss");
+    f.open(QFile::ReadOnly);
+    app.setStyleSheet(f.readAll());
 
-    loginWindow.addDatabase(database);
-
-    loginWindow.show();
-    return a.exec();
+    return app.exec();
 }

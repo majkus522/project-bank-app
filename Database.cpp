@@ -3,7 +3,14 @@
 
 using namespace std;
 
-Database::Database(QObject* parent) : QObject(parent)
+PGconn * Database::connection() const
+{
+    if (PQstatus(conn) != CONNECTION_OK)
+        PQreset(conn);
+    return conn;
+}
+
+Database::Database()
 {
     conn = PQconnectdb("host=127.0.0.1 port=5432 dbname=aplikacja_bankowa user=postgres password=P@ssw0rd");
     if (PQstatus(conn) != CONNECTION_OK)
@@ -14,11 +21,4 @@ Database::~Database()
 {
     if (conn)
         PQfinish(conn);
-}
-
-PGconn * Database::connection() const
-{
-    if (PQstatus(conn) != CONNECTION_OK)
-        PQreset(conn);
-    return conn;
 }
